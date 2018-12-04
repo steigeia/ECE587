@@ -80,7 +80,7 @@ public class Inheritance extends Statement {
 //        if(NotEqual.NotEqualCount>0 && (NotEqual.v1.get(i).equals(subject) && NotEqual.v2.get(i).equals(predicate) ||
 //        		NotEqual.v2.get(i).equals(subject) && NotEqual.v1.get(i).equals(predicate))) {
 //        	System.out.println("Prevented Inheritence");
-//    	return null;
+//    		return null;
 //        }
 //    	}
         if (subject==null || predicate==null || invalidStatement(subject, predicate)) {            

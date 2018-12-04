@@ -77,7 +77,7 @@ public abstract class Statement extends CompoundTerm {
             if(NotEqual.NotEqualCount>0 && (NotEqual.v1.get(i).equals(subj) && NotEqual.v2.get(i).equals(pred) ||
             		NotEqual.v2.get(i).equals(subj) && NotEqual.v1.get(i).equals(pred))) {
             	System.out.println("Prevented Inheritence");
-        	return null;
+            	return null;
             }
         }
     	if (statement instanceof Inheritance) {
