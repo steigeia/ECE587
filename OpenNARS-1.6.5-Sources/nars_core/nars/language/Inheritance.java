@@ -76,13 +76,10 @@ public class Inheritance extends Statement {
      * @return A compound generated or null
      */
     public static Inheritance make(final Term subject, final Term predicate) {
-//    	for(int i = 0; i < NotEqual.NotEqualCount; i++) {
-//        if(NotEqual.NotEqualCount>0 && (NotEqual.v1.get(i).equals(subject) && NotEqual.v2.get(i).equals(predicate) ||
-//        		NotEqual.v2.get(i).equals(subject) && NotEqual.v1.get(i).equals(predicate))) {
-//        	System.out.println("Prevented Inheritence");
-//    		return null;
-//        }
-//    	}
+    	if(NotEqual.contains(subject, predicate)) {
+    		return null;
+    	}
+    	
         if (subject==null || predicate==null || invalidStatement(subject, predicate)) {            
             return null;
         }

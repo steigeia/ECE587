@@ -73,13 +73,6 @@ public abstract class Statement extends CompoundTerm {
      * @param statement A sample statement providing the class type
      */
     public static Statement make(final Statement statement, final Term subj, final Term pred) {        
-    	for(int i = 0; i < NotEqual.v1.size(); i++) {
-            if(NotEqual.NotEqualCount>0 && (NotEqual.v1.get(i).equals(subj) && NotEqual.v2.get(i).equals(pred) ||
-            		NotEqual.v2.get(i).equals(subj) && NotEqual.v1.get(i).equals(pred))) {
-            	System.out.println("Prevented Inheritence");
-            	return null;
-            }
-        }
     	if (statement instanceof Inheritance) {
             return Inheritance.make(subj, pred);
         }
