@@ -1,0 +1,113 @@
+/*
+ * NotEqual.java
+ */
+package nars.language;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Vector;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
+import nars.config.Parameters;
+import nars.io.Symbols.NativeOperator;
+import nars.operator.Operation;
+import nars.operator.Operator;
+import nars.operator.NotEqualOperation;
+
+/**
+ * A Statement about an Inheritance relation.
+ */
+public class NotEqual extends Statement {
+
+	static public Vector<Vector<String>> s = new Vector<Vector<String>>();
+	
+	public static int NotEqualCount = -1;
+	public static Vector v1 = new Vector();
+	public static Vector v2 = new Vector();
+	//static public List listNotEqual = (List) new ArrayList();  
+	
+    /**
+     * Constructor with partial values, called by make
+     * @param n The name of the term
+     * @param arg The component list of the term
+     */
+    protected NotEqual(final Term[] arg) {
+        super(arg);  
+        
+        init(arg);
+    }
+    
+    protected NotEqual(final Term subj, final Term pred) {
+        this(new Term[] { subj, pred} );
+    }
+
+
+    /**
+     * Clone an object
+     * @return A new object, to be casted into a SetExt
+     */
+    @Override public NotEqual clone() {
+        return make(getSubject(), getPredicate());
+    }
+
+    @Override public NotEqual clone(Term[] t) {
+        if (t.length!=2)
+            throw new RuntimeException("Invalid terms for " + getClass().getSimpleName() + ": " + Arrays.toString(t));
+                
+        return make(t[0], t[1]);
+    }
+
+    /** alternate version of Inheritance.make that allows equivalent subject and predicate
+     * to be reduced to the common term.      */
+    public static Term makeTerm(final Term subject, final Term predicate) {            
+        return make(subject, predicate);        
+    }
+
+    /**
+     * Try to make a new compound from two term. Called by the inference rules.
+     * @param subject The first compoment
+     * @param predicate The second compoment
+     * @param memory Reference to the memory
+     * @return A compound generated or null
+     */
+    public static NotEqual make(final Term subject, final Term predicate) {
+    	NotEqualCount= NotEqualCount + 1;
+    	v1.add(subject);
+    	v2.add(predicate);
+    	System.out.println(v1.get(NotEqualCount));
+    	System.out.println(v2.get(NotEqualCount));
+    	
+        if (subject==null || predicate==null || invalidStatement(subject, predicate)) {            
+            return null;
+        }
+        
+        boolean subjectProduct = subject instanceof Product;
+        boolean predicateOperator = predicate instanceof Operator;
+        
+        if (Parameters.DEBUG) {
+            if (!predicateOperator && predicate.toString().startsWith("^")) {
+                throw new RuntimeException("operator term detected but is not an operator: " + predicate);
+            }
+        }
+        
+        if (subjectProduct && predicateOperator) {
+            //name = Operation.makeName(predicate.name(), ((CompoundTerm) subject).term);
+            return NotEqualOperation.make((Operator)predicate, ((CompoundTerm)subject).term, true);
+        } else {            
+            return new NotEqual(subject, predicate);
+        }
+         
+    }
+
+    /**
+     * Get the operator of the term.
+     * @return the operator of the term
+     */
+    @Override
+    public NativeOperator operator() {
+        return NativeOperator.NOTEQUAL;
+    }
+
+}
+
