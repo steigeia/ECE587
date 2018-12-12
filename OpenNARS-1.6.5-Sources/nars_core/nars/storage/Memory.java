@@ -65,6 +65,7 @@ import nars.io.SetDecisionThreshold;
 import nars.io.SetVolume;
 import nars.language.CompoundTerm;
 import nars.language.Interval;
+import nars.language.NotEqual;
 
 
 /**
@@ -141,6 +142,7 @@ public class Memory implements Serializable, Iterable<Concept> {
     
     public void reset() {
         event.emit(ResetStart.class);
+        NotEqual.reset();
         decisionBlock = 0;
         concepts.clear();
         novelTasks.clear();

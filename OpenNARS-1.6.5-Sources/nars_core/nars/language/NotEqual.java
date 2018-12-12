@@ -24,12 +24,17 @@ public class NotEqual extends Statement {
 	public static Vector<Term> v2 = new Vector<Term>();
 	public static boolean contains(final Term subject, final Term predicate) {
 		for(int i = 0; i < NotEqual.v1.size(); i++) {
-	        if(NotEqual.v1.get(i).equals(subject) && NotEqual.v2.get(i).equals(predicate) ||
-	        		NotEqual.v2.get(i).equals(subject) && NotEqual.v1.get(i).equals(predicate)) {
+	        if((NotEqual.v1.get(i).equals(subject) && NotEqual.v2.get(i).equals(predicate)) ||
+	        		(NotEqual.v2.get(i).equals(subject) && NotEqual.v1.get(i).equals(predicate))) {
 	    		return true;
 	        }
     	}
 		return false;
+	}
+	
+	public static void reset() {
+		v1.clear();
+		v2.clear();
 	}
 	
     /**
@@ -77,8 +82,8 @@ public class NotEqual extends Statement {
      * @return A compound generated or null
      */
     public static NotEqual make(final Term subject, final Term predicate) {
-    	v1.add(subject);
-    	v2.add(predicate);
+    	v1.add(subject.clone());
+    	v2.add(predicate.clone());
     	
         if (subject==null || predicate==null || invalidStatement(subject, predicate)) {            
             return null;

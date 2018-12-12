@@ -61,9 +61,6 @@ public class Similarity extends Statement {
     /** alternate version of make that allows equivalent subject and predicate
      * to be reduced to the common term.      */
     public static Term makeTerm(final Term subject, final Term predicate) {
-    	if(NotEqual.contains(subject, predicate)) {
-    		return null;
-    	}
     	
         if (subject.equals(predicate))
             return subject;                
@@ -78,8 +75,11 @@ public class Similarity extends Statement {
      * @return A compound generated or null
      */
     public static Similarity make(final Term subject, final Term predicate) {
-
-        if (invalidStatement(subject, predicate)) {
+    	if(NotEqual.contains(subject, predicate)) {
+    		return null;
+    	}
+    	
+        if (invalidStatement(subject, predicate)) {	
             return null;
         }
         if (subject.compareTo(predicate) > 0) {
