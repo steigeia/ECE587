@@ -1,0 +1,7 @@
+10000000
+<Apple --> Plant>.
+<Cactus --> Plant>.
+<Cactus --> Apple>?
+10000
+
+**

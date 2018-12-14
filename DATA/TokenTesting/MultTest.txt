@@ -1,0 +1,26 @@
+10000000
+<Tanner !-> bat>.
+10
+<Tanner !-> dog>.
+10
+<Tanner !-> cat>.
+10
+<Tanner !-> whale>.
+10
+<Tanner --> living>.
+10
+<bat --> living>.
+10
+<dog --> living>.
+10
+<cat --> living>.
+10
+<whale --> living>.
+10
+<Tanner --> bat>?
+10
+<Tanner --> dog>?
+10
+<Tanner --> cat>?
+10
+<Tanner --> whale>?

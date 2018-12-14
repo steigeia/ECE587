@@ -1,0 +1,6 @@
+10000000
+<Tanner --> Human>.
+<Tanner !-> Isaac>.
+<Isaac --> Human>.
+<Isaac --> Tanner>?
+

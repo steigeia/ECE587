@@ -1,0 +1,8 @@
+10000000
+<Apple --> Plant>.
+<Cactus --> Plant>.
+<Apple --> Edible>. %0.70;0.90%
+<Cactus --> Edible>?
+10000
+
+**
